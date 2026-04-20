@@ -1,14 +1,13 @@
 <h2 class="bg-secondary text-white text-center p-2">Add Post</h2>
 
 <?php
-include 'db/db.php';
+include '../admin/db/db.php';
 
 $select_cat = "SELECT * from category";
 $ex_cat = mysqli_query($con, $select_cat);
 
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['user_id'])) {
     header("location:login.php");
-    exit();
 }
 
 if (isset($_POST['postBtn'])) {
@@ -16,6 +15,7 @@ if (isset($_POST['postBtn'])) {
     $content = $_POST['post_content'];
     $summary = $_POST['post_summary'];
     $category = $_POST['post_category'];
+    $author = $_SESSION['user_name'];
     $date = date("Y-m-d");
     $status = $_POST['post_status'];
 
@@ -26,7 +26,7 @@ if (isset($_POST['postBtn'])) {
 
     $insert = "INSERT into posts 
     (post_title, post_content, post_img, post_category, post_author, post_date, post_summary, post_status)
-    values ('$title','$content','$img_name','$category','admin','$date','$summary','$status')";
+    values ('$title','$content','$img_name','$category','$author','$date','$summary','$status')";
 
     $ex = mysqli_query($con, $insert);
 
@@ -93,7 +93,6 @@ if (isset($_POST['postBtn'])) {
                     <td>
                         <select name="post_status" class="form-control">
                             <option value="0">Pending</option>
-                            <option value="1">Published</option>
                         </select>
                     </td>
                 </tr>

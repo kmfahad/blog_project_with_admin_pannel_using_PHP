@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="copyright-text">
-                    <p>Copyright 2020 Stand Blog Co.
+                    <p>Copyright 2020 Stand Blog Co. HTML Template
 
                         Design: <a rel="nofollow" href="https://templatemo.com" target="_parent">TemplateMo</a></p>
                 </div>

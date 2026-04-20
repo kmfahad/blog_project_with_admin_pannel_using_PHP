@@ -3,6 +3,7 @@ include 'db/db.php';
  session_start();
 
  $email = $_SESSION['email'];
+ $name = $_SESSION['name'];
  if($email == null){
     header("location: index.php");
  }

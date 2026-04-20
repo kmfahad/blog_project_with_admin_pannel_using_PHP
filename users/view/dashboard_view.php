@@ -1,24 +1,28 @@
 <?php
-include 'db/db.php';
+include '../admin/db/db.php';
 
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['user_id'])) {
     header("location:login.php");
+    exit();
 }
+
+$user_name = $_SESSION['user_name'];
 
 $select_recent = "SELECT posts.*, category.category_name 
            FROM posts 
-           left join category on posts.post_category = category.id 
+           LEFT JOIN category ON posts.post_category = category.id 
+           WHERE posts.post_author = '$user_name'
            ORDER BY posts.post_id DESC 
            LIMIT 5";
 
 $ex_recent = mysqli_query($con, $select_recent);
 ?>
 
-<h2 class="bg-secondary text-white text-center p-2">Dashboard</h2>
+<h2 class="bg-secondary text-white text-center p-2">User Dashboard</h2>
 
 
 <div class="card-header bg-secondary text-white mb-2">
-    <i class="fas fa-table"></i> Recent Posts
+    <i class="fas fa-table"></i> My Posts
 </div>
 <div class="col-lg-12">
     <table class="table table-bordered table-hover">
