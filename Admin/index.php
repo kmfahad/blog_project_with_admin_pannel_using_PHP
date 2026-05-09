@@ -8,7 +8,7 @@ if (isset($_SESSION['email']) && $_SESSION['email'] != '') {
 if (isset($_POST['submit'])) {
     $email = $_POST['admin_email'];
     $pass = $_POST['admin_pass'];
-    $pass = md5($pass);
+    // $pass = md5($pass);
 
     $select = "SELECT * FROM admin WHERE email = '$email' AND pass = '$pass'";
     $ex = mysqli_query($con, $select);
